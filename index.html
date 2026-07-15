@@ -53,10 +53,9 @@
         ::-webkit-scrollbar-thumb:hover { background: #7a2b18; }
 
         .noise-bg {
-            background-image: radial-gradient(circle at 20% 20%, rgba(122,43,24,0.45), transparent 45%),
-                               radial-gradient(circle at 85% 10%, rgba(201,161,90,0.16), transparent 40%),
-                               radial-gradient(circle at 60% 90%, rgba(122,43,24,0.35), transparent 45%),
-                               radial-gradient(circle at 10% 70%, rgba(200,103,47,0.18), transparent 40%);
+            background-image: radial-gradient(circle at 20% 20%, rgba(122,43,24,0.35), transparent 45%),
+                               radial-gradient(circle at 85% 10%, rgba(201,161,90,0.10), transparent 40%),
+                               radial-gradient(circle at 60% 90%, rgba(122,43,24,0.25), transparent 45%);
         }
         .grain::after {
             content: "";
@@ -78,85 +77,14 @@
             letter-spacing: -0.02em;
         }
         .card {
-            position: relative;
-            background: linear-gradient(160deg, rgba(255,230,200,0.10), rgba(122,43,24,0.10) 40%, rgba(10,7,5,0.22) 100%);
-            backdrop-filter: blur(24px) saturate(160%);
-            -webkit-backdrop-filter: blur(24px) saturate(160%);
-            border: 1px solid rgba(255,235,210,0.16);
-            box-shadow:
-                inset 0 1px 0 rgba(255,245,225,0.30),
-                inset 0 -12px 24px -18px rgba(0,0,0,0.55),
-                0 8px 32px -12px rgba(0,0,0,0.55),
-                0 1px 2px rgba(0,0,0,0.4);
-            transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease, background 0.35s ease;
+            background: linear-gradient(180deg, rgba(28,17,12,0.9), rgba(21,13,10,0.9));
+            border: 1px solid rgba(201,161,90,0.16);
         }
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            background: radial-gradient(120% 60% at 15% 0%, rgba(255,245,225,0.16), transparent 55%);
-            mix-blend-mode: screen;
-        }
-        .card:hover {
-            border-color: rgba(201,161,90,0.55);
-            box-shadow:
-                inset 0 1px 0 rgba(255,245,225,0.4),
-                inset 0 -12px 24px -18px rgba(0,0,0,0.5),
-                0 12px 40px -12px rgba(122,43,24,0.45),
-                0 1px 2px rgba(0,0,0,0.4);
-            transform: translateY(-2px);
-        }
+        .card:hover { border-color: rgba(201,161,90,0.4); }
         .chip {
-            position: relative;
-            border: 1px solid rgba(255,235,210,0.22);
-            background: linear-gradient(160deg, rgba(255,230,200,0.14), rgba(122,43,24,0.12));
-            backdrop-filter: blur(14px) saturate(150%);
-            -webkit-backdrop-filter: blur(14px) saturate(150%);
-            box-shadow: inset 0 1px 0 rgba(255,245,225,0.25), 0 2px 8px -4px rgba(0,0,0,0.5);
-            transition: border-color 0.3s ease, background 0.3s ease;
+            border: 1px solid rgba(201,161,90,0.28);
+            background: rgba(122,43,24,0.14);
         }
-        .chip:hover {
-            border-color: rgba(201,161,90,0.6);
-            background: linear-gradient(160deg, rgba(255,230,200,0.2), rgba(122,43,24,0.18));
-        }
-        .glass-nav {
-            background: linear-gradient(180deg, rgba(28,17,12,0.55), rgba(10,7,5,0.45));
-            backdrop-filter: blur(20px) saturate(150%);
-            -webkit-backdrop-filter: blur(20px) saturate(150%);
-            box-shadow: inset 0 -1px 0 rgba(255,235,210,0.12), 0 8px 32px -16px rgba(0,0,0,0.6);
-        }
-        .glass-pill {
-            background: linear-gradient(160deg, rgba(255,240,220,0.95), rgba(242,233,216,0.85));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 4px 16px -6px rgba(0,0,0,0.4);
-        }
-        .seal.glass {
-            background: linear-gradient(160deg, rgba(255,235,210,0.14), rgba(122,43,24,0.10));
-            backdrop-filter: blur(14px) saturate(150%);
-            -webkit-backdrop-filter: blur(14px) saturate(150%);
-            box-shadow: inset 0 1px 0 rgba(255,245,225,0.3), 0 4px 16px -8px rgba(0,0,0,0.5);
-        }
-        .glass-accent {
-            background: linear-gradient(160deg, rgba(255,160,100,0.55), rgba(200,103,47,0.65));
-            backdrop-filter: blur(14px) saturate(160%);
-            -webkit-backdrop-filter: blur(14px) saturate(160%);
-            border: 1px solid rgba(255,220,180,0.3);
-            box-shadow: inset 0 1px 0 rgba(255,240,220,0.4), 0 6px 20px -8px rgba(200,103,47,0.5);
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-        .glass-accent:hover { filter: brightness(1.12); transform: translateY(-1px); }
-        .glass-outline {
-            background: linear-gradient(160deg, rgba(255,235,210,0.08), rgba(122,43,24,0.06));
-            backdrop-filter: blur(14px) saturate(150%);
-            -webkit-backdrop-filter: blur(14px) saturate(150%);
-            border: 1px solid rgba(255,235,210,0.24);
-            box-shadow: inset 0 1px 0 rgba(255,245,225,0.15);
-            transition: border-color 0.3s ease, background 0.3s ease;
-        }
-        .glass-outline:hover { border-color: rgba(201,161,90,0.6); background: linear-gradient(160deg, rgba(255,235,210,0.14), rgba(122,43,24,0.1)); }
         .glow {
             position: absolute;
             border-radius: 50%;
@@ -253,7 +181,7 @@
                 { label: "Contact", href: "#contact" },
             ];
             return (
-                <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-nav border-b hairline" : "bg-transparent"}`}>
+                <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-ink/85 backdrop-blur-md border-b hairline" : "bg-transparent"}`}>
                     <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                         <a href="#" className="flex items-center gap-2">
                             <span className="text-parchment font-display font-semibold text-lg tracking-tight">NK</span>
@@ -267,7 +195,7 @@
                             ))}
                         </div>
                         <div className="flex items-center gap-3">
-                            <a href="mailto:nikilkandesar209@gmail.com?subject=Let's Connect" className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold tracking-wide uppercase text-ink glass-pill rounded-full hover:brightness-95 transition-all">
+                            <a href="mailto:nikilkandesar209@gmail.com?subject=Let's Connect" className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold tracking-wide uppercase text-ink bg-parchment rounded-full hover:bg-gold transition-colors">
                                 Get in touch
                             </a>
                             <button onClick={() => setOpen(!open)} className="md:hidden text-parchment p-1">
@@ -276,11 +204,11 @@
                         </div>
                     </div>
                     {open && (
-                        <div className="md:hidden glass-nav border-t hairline px-6 py-4 flex flex-col gap-3">
+                        <div className="md:hidden bg-ink/95 backdrop-blur-md border-t hairline px-6 py-4 flex flex-col gap-3">
                             {links.map(l => (
                                 <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-parchmentdim text-sm py-2">{l.label}</a>
                             ))}
-                            <a href="mailto:nikilkandesar209@gmail.com" className="mt-2 text-center px-4 py-2.5 text-xs font-semibold uppercase text-ink glass-pill rounded-full">Get in touch</a>
+                            <a href="mailto:nikilkandesar209@gmail.com" className="mt-2 text-center px-4 py-2.5 text-xs font-semibold uppercase text-ink bg-parchment rounded-full">Get in touch</a>
                         </div>
                     )}
                 </nav>
@@ -334,7 +262,7 @@
                                     <h2 className="big-serif text-4xl sm:text-5xl font-bold text-parchment leading-none">Nikhil<br/>Kandesar</h2>
                                     <p className="mt-3 text-ember font-mono text-sm tracking-wide uppercase">Blockchain Developer &amp; Smart Contract Engineer</p>
                                 </div>
-                                <div className="hidden sm:flex w-20 h-20 rounded-full seal glass items-center justify-center shrink-0 mt-1">
+                                <div className="hidden sm:flex w-20 h-20 rounded-full seal items-center justify-center shrink-0 mt-1">
                                     <span className="font-display text-[10px] text-gold text-center leading-tight tracking-widest">EST.<br/>2023</span>
                                 </div>
                             </div>
@@ -353,8 +281,8 @@
                             </div>
 
                             <div className="mt-8 flex flex-wrap gap-4">
-                                <a href="#projects" className="px-5 py-2.5 rounded-full glass-accent text-ink text-sm font-semibold tracking-wide">View Projects</a>
-                                <a href="#contact" className="px-5 py-2.5 rounded-full glass-outline text-parchment text-sm font-semibold tracking-wide">Contact Me</a>
+                                <a href="#projects" className="px-5 py-2.5 rounded-full bg-ember text-ink text-sm font-semibold tracking-wide hover:bg-gold transition-colors">View Projects</a>
+                                <a href="#contact" className="px-5 py-2.5 rounded-full border hairline text-parchment text-sm font-semibold tracking-wide hover:border-gold transition-colors">Contact Me</a>
                             </div>
                         </div>
                     </div>
@@ -700,10 +628,10 @@
                                 security auditing, or full-stack DApp development.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-                                <a href="mailto:nikilkandesar209@gmail.com" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-ink glass-pill hover:brightness-95 rounded-full text-xs tracking-wide uppercase transition-all">
+                                <a href="mailto:nikilkandesar209@gmail.com" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-ink bg-parchment hover:bg-gold rounded-full text-xs tracking-wide uppercase transition-colors">
                                     <Icons.Mail/> nikilkandesar209@gmail.com
                                 </a>
-                                <a href="tel:+919970155567" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-parchment glass-outline rounded-full text-xs tracking-wide uppercase">
+                                <a href="tel:+919970155567" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-parchment border hairline hover:border-gold rounded-full text-xs tracking-wide uppercase transition-colors">
                                     <Icons.Phone/> +91 9970155567
                                 </a>
                             </div>
