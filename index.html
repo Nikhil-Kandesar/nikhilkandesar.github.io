@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -31,6 +32,17 @@
                         gold: '#c9a15a',
                         parchment: '#f2e9d8',
                         parchmentdim: '#cfc3ab',
+                        // Light theme colors
+                        light: {
+                            bg: '#ffffff',
+                            surface: '#fafafa',
+                            surface2: '#f5f5f5',
+                            text: '#111111',
+                            textdim: '#555555',
+                            border: '#dddddd',
+                            accent: '#2563eb',
+                            accentdark: '#1d4ed8',
+                        }
                     }
                 }
             }
@@ -41,18 +53,31 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', system-ui, sans-serif;
-            background: #0a0705;
-            color: #f2e9d8;
+            background: #ffffff;
+            color: #111111;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        html.dark body {
+            background: #0a0705;
+            color: #f2e9d8;
         }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0705; }
-        ::-webkit-scrollbar-thumb { background: #4a1810; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #7a2b18; }
+        ::-webkit-scrollbar-track { background: #f5f5f5; }
+        ::-webkit-scrollbar-thumb { background: #cccccc; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #999999; }
+        html.dark ::-webkit-scrollbar-track { background: #0a0705; }
+        html.dark ::-webkit-scrollbar-thumb { background: #4a1810; }
+        html.dark ::-webkit-scrollbar-thumb:hover { background: #7a2b18; }
 
         .noise-bg {
+            background-image: radial-gradient(circle at 20% 20%, rgba(37,99,235,0.03), transparent 45%),
+                               radial-gradient(circle at 85% 10%, rgba(37,99,235,0.02), transparent 40%),
+                               radial-gradient(circle at 60% 90%, rgba(37,99,235,0.02), transparent 45%);
+        }
+        html.dark .noise-bg {
             background-image: radial-gradient(circle at 20% 20%, rgba(122,43,24,0.35), transparent 45%),
                                radial-gradient(circle at 85% 10%, rgba(201,161,90,0.10), transparent 40%),
                                radial-gradient(circle at 60% 90%, rgba(122,43,24,0.25), transparent 45%);
@@ -66,7 +91,8 @@
             opacity: 0.035;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
-        .hairline { border-color: rgba(201,161,90,0.28); }
+        .hairline { border-color: #dddddd; }
+        html.dark .hairline { border-color: rgba(201,161,90,0.28); }
         .eyebrow {
             letter-spacing: 0.22em;
             font-family: 'JetBrains Mono', monospace;
@@ -77,13 +103,24 @@
             letter-spacing: -0.02em;
         }
         .card {
+            background: #ffffff;
+            border: 1px solid #eeeeee;
+        }
+        html.dark .card {
             background: linear-gradient(180deg, rgba(28,17,12,0.9), rgba(21,13,10,0.9));
             border: 1px solid rgba(201,161,90,0.16);
         }
-        .card:hover { border-color: rgba(201,161,90,0.4); }
+        .card:hover { border-color: #2563eb; }
+        html.dark .card:hover { border-color: rgba(201,161,90,0.4); }
         .chip {
+            border: 1px solid #dddddd;
+            background: #f5f5f5;
+            color: #333333;
+        }
+        html.dark .chip {
             border: 1px solid rgba(201,161,90,0.28);
             background: rgba(122,43,24,0.14);
+            color: inherit;
         }
         .glow {
             position: absolute;
@@ -99,9 +136,13 @@
         .animate-float-delay { animation: float 11s ease-in-out infinite 2s; }
 
         .seal {
+            border: 1px solid #2563eb;
+        }
+        html.dark .seal {
             border: 1px solid rgba(201,161,90,0.55);
         }
-        .ledger-row:not(:last-child) { border-bottom: 1px solid rgba(201,161,90,0.14); }
+        .ledger-row:not(:last-child) { border-bottom: 1px solid #eeeeee; }
+        html.dark .ledger-row:not(:last-child) { border-bottom: 1px solid rgba(201,161,90,0.14); }
 
         @media (prefers-reduced-motion: reduce) {
             .animate-float, .animate-float-delay { animation: none; }
@@ -129,6 +170,8 @@
             Arrow: (p) => <svg width={p?.s||14} height={p?.s||14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>,
             Menu: (p) => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>,
             X: (p) => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
+            Sun: (p) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
+            Moon: (p) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>,
         };
 
         /* ================= REVEAL ON SCROLL ================= */
@@ -164,6 +207,37 @@
             );
         }
 
+        /* ================= THEME TOGGLE ================= */
+        function ThemeToggle({ className = "" }) {
+            const [dark, setDark] = useState(true);
+            useEffect(() => {
+                const saved = localStorage.getItem("theme");
+                if (saved) {
+                    setDark(saved === "dark");
+                }
+                // Default to dark mode
+                document.documentElement.classList.add("dark");
+            }, []);
+            useEffect(() => {
+                if (dark) {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("theme", "light");
+                }
+            }, [dark]);
+            return (
+                <button
+                    onClick={() => setDark(!dark)}
+                    className={`p-2 rounded-full transition-colors ${className}`}
+                    aria-label="Toggle theme"
+                >
+                    {dark ? <Icons.Sun /> : <Icons.Moon />}
+                </button>
+            );
+        }
+
         /* ================= NAVBAR ================= */
         function Navbar() {
             const [scrolled, setScrolled] = useState(false);
@@ -181,34 +255,38 @@
                 { label: "Contact", href: "#contact" },
             ];
             return (
-                <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-ink/85 backdrop-blur-md border-b hairline" : "bg-transparent"}`}>
+                <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white dark:bg-ink/85 backdrop-blur-md border-b hairline" : "bg-transparent"}`}>
                     <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                         <a href="#" className="flex items-center gap-2">
-                            <span className="text-parchment font-display font-semibold text-lg tracking-tight">NK</span>
-                            <span className="text-parchmentdim/70 text-xs font-mono hidden sm:block">// BLOCKCHAIN DEV</span>
+                            <span className="text-gray-900 dark:text-parchment font-display font-semibold text-lg tracking-tight">NK</span>
+                            <span className="text-gray-500 dark:text-parchmentdim/70 text-xs font-mono hidden sm:block">// BLOCKCHAIN DEV</span>
                         </a>
                         <div className="hidden md:flex items-center gap-8">
                             {links.map(l => (
-                                <a key={l.label} href={l.href} className="text-parchmentdim text-sm font-medium tracking-wide hover:text-gold transition-colors">
+                                <a key={l.label} href={l.href} className="text-gray-600 dark:text-parchmentdim text-sm font-medium tracking-wide hover:text-blue-600 dark:hover:text-gold transition-colors">
                                     {l.label}
                                 </a>
                             ))}
                         </div>
                         <div className="flex items-center gap-3">
-                            <a href="mailto:nikilkandesar209@gmail.com?subject=Let's Connect" className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold tracking-wide uppercase text-ink bg-parchment rounded-full hover:bg-gold transition-colors">
+                            <ThemeToggle className="text-gray-600 dark:text-parchmentdim hover:text-blue-600 dark:hover:text-gold" />
+                            <a href="mailto:nikilkandesar209@gmail.com?subject=Let's Connect" className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold tracking-wide uppercase text-white dark:text-ink bg-blue-600 dark:bg-parchment rounded-full hover:bg-blue-700 dark:hover:bg-gold transition-colors">
                                 Get in touch
                             </a>
-                            <button onClick={() => setOpen(!open)} className="md:hidden text-parchment p-1">
+                            <button onClick={() => setOpen(!open)} className="md:hidden text-gray-900 dark:text-parchment p-1">
                                 {open ? <Icons.X/> : <Icons.Menu/>}
                             </button>
                         </div>
                     </div>
                     {open && (
-                        <div className="md:hidden bg-ink/95 backdrop-blur-md border-t hairline px-6 py-4 flex flex-col gap-3">
+                        <div className="md:hidden bg-white/95 dark:bg-ink/95 backdrop-blur-md border-t hairline px-6 py-4 flex flex-col gap-3">
                             {links.map(l => (
-                                <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-parchmentdim text-sm py-2">{l.label}</a>
+                                <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-gray-600 dark:text-parchmentdim text-sm py-2">{l.label}</a>
                             ))}
-                            <a href="mailto:nikilkandesar209@gmail.com" className="mt-2 text-center px-4 py-2.5 text-xs font-semibold uppercase text-ink bg-parchment rounded-full">Get in touch</a>
+                            <div className="flex items-center gap-4 mt-2">
+                                <ThemeToggle className="text-gray-600 dark:text-parchmentdim" />
+                                <a href="mailto:nikilkandesar209@gmail.com" className="flex-1 text-center px-4 py-2.5 text-xs font-semibold uppercase text-white dark:text-ink bg-blue-600 dark:bg-parchment rounded-full">Get in touch</a>
+                            </div>
                         </div>
                     )}
                 </nav>
@@ -220,22 +298,22 @@
             return (
                 <header className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-28 pb-10 sm:pb-16">
                     <div className="absolute inset-0 pointer-events-none">
-                        <div className="glow w-[520px] h-[520px] bg-rust/25 top-[-12%] left-[-8%] animate-float"/>
-                        <div className="glow w-[420px] h-[420px] bg-ember/10 bottom-[-10%] right-[-6%] animate-float-delay"/>
+                        <div className="glow w-[520px] h-[520px] bg-blue-400/20 dark:bg-rust/25 top-[-12%] left-[-8%] animate-float"/>
+                        <div className="glow w-[420px] h-[420px] bg-blue-500/15 dark:bg-ember/10 bottom-[-10%] right-[-6%] animate-float-delay"/>
                     </div>
 
                     {/* top strip */}
-                    <div className="relative z-10 max-w-6xl mx-auto w-full px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[10px] sm:text-[11px] eyebrow text-parchmentdim/70">
+                    <div className="relative z-10 max-w-6xl mx-auto w-full px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[10px] sm:text-[11px] eyebrow text-gray-500 dark:text-parchmentdim/70">
                         <span>WEB3 &nbsp;/&nbsp; SMART CONTRACTS</span>
                         <span className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-ember animate-pulse shrink-0"/>
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-ember animate-pulse shrink-0"/>
                             AVAILABLE FOR OPPORTUNITIES
                         </span>
                     </div>
 
                     {/* giant headline */}
                     <div className="relative z-10 max-w-6xl mx-auto w-full px-6 mt-6">
-                        <h1 className="big-serif font-black text-parchment leading-[0.86] text-[16vw] sm:text-[13vw] md:text-[9.5vw] lg:text-[8vw] max-w-screen-md select-none">
+                        <h1 className="big-serif font-black text-gray-900 dark:text-parchment leading-[0.9] text-[8.5vw] sm:text-[9vw] md:text-[7vw] lg:text-[5.5vw] max-w-screen-md select-none">
                             BLOCKCHAIN
                         </h1>
                     </div>
@@ -243,31 +321,31 @@
                     {/* content grid under headline */}
                     <div className="relative z-10 max-w-6xl mx-auto w-full px-6 mt-10 grid md:grid-cols-12 gap-8 items-start">
                         <div className="md:col-span-4 space-y-4 min-w-0">
-                            <p className="big-serif text-3xl text-gold leading-tight">Solidity /<br/>Rust / Move</p>
-                            <p className="text-parchmentdim text-sm leading-relaxed font-mono">
+                            <p className="big-serif text-3xl text-blue-600 dark:text-gold leading-tight">Solidity /<br/>Rust / Move</p>
+                            <p className="text-gray-600 dark:text-parchmentdim text-sm leading-relaxed font-mono">
                                 SMART CONTRACTS<br/>WALLET INFRASTRUCTURE<br/>DEFI &amp; RWA PROTOCOLS
                             </p>
-                            <blockquote className="mt-6 pt-6 border-t hairline big-serif italic text-parchment/90 text-lg leading-snug">
+                            <blockquote className="mt-6 pt-6 border-t hairline big-serif italic text-gray-800 dark:text-parchment/90 text-lg leading-snug">
                                 "I build the infrastructure that moves value across chains — securely, and at production scale."
                             </blockquote>
                         </div>
 
                         <div className="md:col-span-1 hidden md:flex justify-center">
-                            <div className="w-px h-full bg-gold/20"/>
+                            <div className="w-px h-full bg-gray-300 dark:bg-gold/20"/>
                         </div>
 
                         <div className="md:col-span-7 min-w-0">
                             <div className="flex items-start justify-between gap-4">
                                 <div>
-                                    <h2 className="big-serif text-4xl sm:text-5xl font-bold text-parchment leading-none">Nikhil<br/>Kandesar</h2>
-                                    <p className="mt-3 text-ember font-mono text-sm tracking-wide uppercase">Blockchain Developer &amp; Smart Contract Engineer</p>
+                                    <h2 className="big-serif text-4xl sm:text-5xl font-bold text-gray-900 dark:text-parchment leading-none">Nikhil<br/>Kandesar</h2>
+                                    <p className="mt-3 text-blue-600 dark:text-ember font-mono text-sm tracking-wide uppercase">Blockchain Developer &amp; Smart Contract Engineer</p>
                                 </div>
                                 <div className="hidden sm:flex w-20 h-20 rounded-full seal items-center justify-center shrink-0 mt-1">
-                                    <span className="font-display text-[10px] text-gold text-center leading-tight tracking-widest">EST.<br/>2023</span>
+                                    <span className="font-display text-[10px] text-blue-600 dark:text-gold text-center leading-tight tracking-widest">EST.<br/>2023</span>
                                 </div>
                             </div>
 
-                            <p className="mt-5 text-parchmentdim text-base leading-relaxed max-w-xl">
+                            <p className="mt-5 text-gray-600 dark:text-parchmentdim text-base leading-relaxed max-w-xl">
                                 Blockchain developer with 2.5+ years designing, building, and deploying production-ready
                                 smart contracts and decentralized applications — with deep expertise in wallet
                                 infrastructure, transaction lifecycles, and secure key management across 15+ mainnet
@@ -281,8 +359,8 @@
                             </div>
 
                             <div className="mt-8 flex flex-wrap gap-4">
-                                <a href="#projects" className="px-5 py-2.5 rounded-full bg-ember text-ink text-sm font-semibold tracking-wide hover:bg-gold transition-colors">View Projects</a>
-                                <a href="#contact" className="px-5 py-2.5 rounded-full border hairline text-parchment text-sm font-semibold tracking-wide hover:border-gold transition-colors">Contact Me</a>
+                                <a href="#projects" className="px-5 py-2.5 rounded-full bg-blue-600 text-white dark:bg-ember dark:text-ink text-sm font-semibold tracking-wide hover:bg-blue-700 dark:hover:bg-gold transition-colors">View Projects</a>
+                                <a href="#contact" className="px-5 py-2.5 rounded-full border hairline text-gray-900 dark:text-parchment text-sm font-semibold tracking-wide hover:border-blue-600 dark:hover:border-gold transition-colors">Contact Me</a>
                             </div>
                         </div>
                     </div>
@@ -293,9 +371,9 @@
         function Stat({ icon, value, label }) {
             return (
                 <div className="card rounded-xl p-4 flex flex-col items-start gap-1.5">
-                    <div className="text-gold">{icon}</div>
-                    <div className="big-serif text-xl text-parchment leading-none">{value}</div>
-                    <div className="text-[10px] eyebrow text-parchmentdim/60 whitespace-nowrap">{label}</div>
+                    <div className="text-blue-600 dark:text-gold">{icon}</div>
+                    <div className="big-serif text-xl text-gray-900 dark:text-parchment leading-none">{value}</div>
+                    <div className="text-[10px] eyebrow text-gray-500 dark:text-parchmentdim/60 whitespace-nowrap">{label}</div>
                 </div>
             );
         }
@@ -305,8 +383,8 @@
             return (
                 <Reveal className="mb-10 flex items-end justify-between border-b hairline pb-4">
                     <div>
-                        <p className="text-[11px] eyebrow text-ember mb-2">{eyebrow}</p>
-                        <h2 className="big-serif text-3xl sm:text-4xl text-parchment font-semibold">{title}</h2>
+                        <p className="text-[11px] eyebrow text-blue-600 dark:text-ember mb-2">{eyebrow}</p>
+                        <h2 className="big-serif text-3xl sm:text-4xl text-gray-900 dark:text-parchment font-semibold">{title}</h2>
                     </div>
                 </Reveal>
             );
@@ -322,15 +400,15 @@
                 { icon: <Icons.Flask s={22}/>, title: "DeFi / RWA Protocols", desc: "Tokenization, staking, and compliance-aware asset platforms." },
             ];
             return (
-                <section className="bg-panel border-y hairline py-14">
+                <section className="bg-gray-50 dark:bg-panel border-y hairline py-14">
                     <div className="max-w-6xl mx-auto px-6">
-                        <Reveal className="eyebrow text-[11px] text-ember mb-8">WHAT I DO</Reveal>
+                        <Reveal className="eyebrow text-[11px] text-blue-600 dark:text-ember mb-8">WHAT I DO</Reveal>
                         <div className="grid sm:grid-cols-2 md:grid-cols-5 gap-5">
                             {items.map((it, i) => (
                                 <Reveal key={it.title} delay={i * 60} className="card rounded-xl p-5 flex flex-col gap-3">
-                                    <span className="text-gold">{it.icon}</span>
-                                    <h3 className="text-parchment font-semibold text-sm">{it.title}</h3>
-                                    <p className="text-parchmentdim/80 text-xs leading-relaxed">{it.desc}</p>
+                                    <span className="text-blue-600 dark:text-gold">{it.icon}</span>
+                                    <h3 className="text-gray-900 dark:text-parchment font-semibold text-sm">{it.title}</h3>
+                                    <p className="text-gray-600 dark:text-parchmentdim/80 text-xs leading-relaxed">{it.desc}</p>
                                 </Reveal>
                             ))}
                         </div>
@@ -345,7 +423,7 @@
                 <section id="about" className="max-w-6xl mx-auto px-6 py-24">
                     <SectionHead eyebrow="01 / PROFILE" title="About Me"/>
                     <div className="grid md:grid-cols-3 gap-10">
-                        <Reveal className="md:col-span-2 space-y-4 text-parchmentdim text-base leading-relaxed min-w-0">
+                        <Reveal className="md:col-span-2 space-y-4 text-gray-600 dark:text-parchmentdim text-base leading-relaxed min-w-0">
                             <p>I specialize in building cryptocurrency wallet infrastructure, with structural expertise
                                in wallet architecture and blockchain transaction lifecycles.</p>
                             <p>My foundation includes secure key systems like BIP-32, BIP-39, and BIP-44, applied
@@ -355,16 +433,16 @@
                         </Reveal>
                         <Reveal delay={120} className="card rounded-2xl p-6 flex flex-col gap-5 min-w-0">
                             <div className="ledger-row pb-4">
-                                <span className="big-serif text-3xl text-gold block">2.5 Yrs</span>
-                                <span className="text-[10px] eyebrow text-parchmentdim/60">PROFESSIONAL TRACK</span>
+                                <span className="big-serif text-3xl text-blue-600 dark:text-gold block">2.5 Yrs</span>
+                                <span className="text-[10px] eyebrow text-gray-500 dark:text-parchmentdim/60">PROFESSIONAL TRACK</span>
                             </div>
                             <div className="ledger-row pb-4">
-                                <span className="big-serif text-3xl text-gold block">15+</span>
-                                <span className="text-[10px] eyebrow text-parchmentdim/60">MAINNET PROJECTS</span>
+                                <span className="big-serif text-3xl text-blue-600 dark:text-gold block">15+</span>
+                                <span className="text-[10px] eyebrow text-gray-500 dark:text-parchmentdim/60">MAINNET PROJECTS</span>
                             </div>
                             <div>
-                                <span className="text-parchment font-medium block text-sm">B.Tech, Electronics &amp; Telecom</span>
-                                <span className="text-parchmentdim/60 text-xs font-mono">VIIT Pune · CGPA 9.29</span>
+                                <span className="text-gray-900 dark:text-parchment font-medium block text-sm">B.Tech, Electronics &amp; Telecom</span>
+                                <span className="text-gray-500 dark:text-parchmentdim/60 text-xs font-mono">VIIT Pune · CGPA 9.29</span>
                             </div>
                         </Reveal>
                     </div>
@@ -414,7 +492,7 @@
                                 <span
                                     key={s}
                                     title={s}
-                                    className="chip px-2.5 py-1.5 rounded-md text-[11px] font-mono text-parchment/90 text-center leading-tight"
+                                    className="chip px-2.5 py-1.5 rounded-md text-[11px] font-mono text-gray-700 dark:text-parchment/90 text-center leading-tight"
                                 >
                                     {s}
                                 </span>
@@ -446,7 +524,7 @@
                                     delay={i * 60}
                                     className={`card rounded-xl p-5 ${isLastOdd ? "sm:col-span-2" : ""}`}
                                 >
-                                    <h3 className="text-[11px] eyebrow text-ember mb-4">{g.title.toUpperCase()}</h3>
+                                    <h3 className="text-[11px] eyebrow text-blue-600 dark:text-ember mb-4">{g.title.toUpperCase()}</h3>
                                     <TagGrid items={g.items}/>
                                 </Reveal>
                             );
@@ -504,17 +582,17 @@
                     <div className="relative pl-8 border-l hairline space-y-14">
                         {jobs.map((job, idx) => (
                             <Reveal key={idx} delay={idx * 80} className="relative">
-                                <div className="absolute -left-[37px] top-1.5 w-2.5 h-2.5 rounded-full bg-ember ring-4 ring-panel"/>
+                                <div className="absolute -left-[37px] top-1.5 w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-ember ring-4 ring-white dark:ring-panel"/>
                                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                                    <span className="text-xs font-mono text-ember">{job.period}</span>
-                                    <span className="text-xs text-parchmentdim/60 font-mono">{job.location}</span>
+                                    <span className="text-xs font-mono text-blue-600 dark:text-ember">{job.period}</span>
+                                    <span className="text-xs text-gray-500 dark:text-parchmentdim/60 font-mono">{job.location}</span>
                                 </div>
-                                <h3 className="big-serif text-xl text-parchment">{job.role}</h3>
-                                <p className="text-parchmentdim/80 text-sm font-medium mb-3">{job.company}</p>
-                                <ul className="space-y-2 text-parchmentdim/90 text-sm leading-relaxed">
+                                <h3 className="big-serif text-xl text-gray-900 dark:text-parchment">{job.role}</h3>
+                                <p className="text-gray-600 dark:text-parchmentdim/80 text-sm font-medium mb-3">{job.company}</p>
+                                <ul className="space-y-2 text-gray-600 dark:text-parchmentdim/90 text-sm leading-relaxed">
                                     {job.bullets.map((b, i) => (
                                         <li key={i} className="flex gap-2">
-                                            <span className="text-gold mt-1.5 w-1 h-1 rounded-full bg-gold shrink-0"/>
+                                            <span className="text-blue-600 dark:text-gold mt-1.5 w-1 h-1 rounded-full bg-blue-600 dark:bg-gold shrink-0"/>
                                             <span>{b}</span>
                                         </li>
                                     ))}
@@ -569,8 +647,8 @@
                 <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
                     <div className="flex items-end justify-between border-b hairline pb-4 mb-10">
                         <Reveal>
-                            <p className="text-[11px] eyebrow text-ember mb-2">04 / SELECTED WORK</p>
-                            <h2 className="big-serif text-3xl sm:text-4xl text-parchment font-semibold">Featured Projects</h2>
+                            <p className="text-[11px] eyebrow text-blue-600 dark:text-ember mb-2">04 / SELECTED WORK</p>
+                            <h2 className="big-serif text-3xl sm:text-4xl text-gray-900 dark:text-parchment font-semibold">Featured Projects</h2>
                         </Reveal>
                     </div>
                     <div className="grid md:grid-cols-2 gap-6">
@@ -585,23 +663,23 @@
                                     <div className={isLastOdd ? "grid sm:grid-cols-2 gap-6" : ""}>
                                         <div>
                                             <div className="flex justify-between items-start mb-4">
-                                                <span className="text-[10px] eyebrow chip px-2 py-1 rounded text-ember">{p.type}</span>
-                                                <span className="text-parchmentdim/50 group-hover:text-gold transition-colors sm:hidden"><Icons.Arrow/></span>
+                                                <span className="text-[10px] eyebrow chip px-2 py-1 rounded text-blue-600 dark:text-ember">{p.type}</span>
+                                                <span className="text-gray-400 dark:text-parchmentdim/50 group-hover:text-blue-600 dark:group-hover:text-gold transition-colors sm:hidden"><Icons.Arrow/></span>
                                             </div>
-                                            <h4 className="big-serif text-xl text-parchment mb-2 group-hover:text-gold transition-colors">{p.name}</h4>
+                                            <h4 className="big-serif text-xl text-gray-900 dark:text-parchment mb-2 group-hover:text-blue-600 dark:group-hover:text-gold transition-colors">{p.name}</h4>
                                             <div className="flex flex-wrap gap-1.5 mb-3">
                                                 {p.chains.map(c => (
-                                                    <span key={c} className="text-[10px] font-mono px-2 py-0.5 rounded border border-gold/30 text-gold/90">{c}</span>
+                                                    <span key={c} className="text-[10px] font-mono px-2 py-0.5 rounded border border-blue-300 dark:border-gold/30 text-blue-700 dark:text-gold/90">{c}</span>
                                                 ))}
                                             </div>
-                                            <p className="text-parchmentdim/80 text-sm leading-relaxed mb-6 sm:mb-0">{p.desc}</p>
+                                            <p className="text-gray-600 dark:text-parchmentdim/80 text-sm leading-relaxed mb-6 sm:mb-0">{p.desc}</p>
                                         </div>
                                         {isLastOdd && (
                                             <div className="flex flex-col justify-between">
-                                                <span className="hidden sm:flex justify-end text-parchmentdim/50 group-hover:text-gold transition-colors"><Icons.Arrow/></span>
+                                                <span className="hidden sm:flex justify-end text-gray-400 dark:text-parchmentdim/50 group-hover:text-blue-600 dark:group-hover:text-gold transition-colors"><Icons.Arrow/></span>
                                                 <div className="flex flex-wrap gap-1.5 content-end h-full items-end">
                                                     {p.tech.map(t => (
-                                                        <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono border border-parchmentdim/20 text-parchmentdim/70">{t}</span>
+                                                        <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono border border-gray-200 dark:border-parchmentdim/20 text-gray-600 dark:text-parchmentdim/70">{t}</span>
                                                     ))}
                                                 </div>
                                             </div>
@@ -610,7 +688,7 @@
                                     {!isLastOdd && (
                                         <div className="flex flex-wrap gap-1.5 pt-4 border-t hairline">
                                             {p.tech.map(t => (
-                                                <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono border border-parchmentdim/20 text-parchmentdim/70">{t}</span>
+                                                <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono border border-gray-200 dark:border-parchmentdim/20 text-gray-600 dark:text-parchmentdim/70">{t}</span>
                                             ))}
                                         </div>
                                     )}
@@ -625,34 +703,34 @@
         /* ================= CONTACT / FOOTER ================= */
         function Contact() {
             return (
-                <section id="contact" className="border-t hairline bg-panel">
+                <section id="contact" className="border-t hairline bg-gray-50 dark:bg-panel">
                     <div className="max-w-6xl mx-auto px-6 py-24">
                         <Reveal className="text-center max-w-2xl mx-auto">
-                            <p className="text-[11px] eyebrow text-ember mb-3">05 / GET IN TOUCH</p>
-                            <h2 className="big-serif text-4xl sm:text-5xl text-parchment font-semibold mb-5">Let's build something on-chain.</h2>
-                            <p className="text-parchmentdim/80 text-sm leading-relaxed mb-8">
+                            <p className="text-[11px] eyebrow text-blue-600 dark:text-ember mb-3">05 / GET IN TOUCH</p>
+                            <h2 className="big-serif text-4xl sm:text-5xl text-gray-900 dark:text-parchment font-semibold mb-5">Let's build something on-chain.</h2>
+                            <p className="text-gray-600 dark:text-parchmentdim/80 text-sm leading-relaxed mb-8">
                                 Open to conversations on smart contract architecture, wallet infrastructure,
                                 security auditing, or full-stack DApp development.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-                                <a href="mailto:nikilkandesar209@gmail.com" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-ink bg-parchment hover:bg-gold rounded-full text-xs tracking-wide uppercase transition-colors">
+                                <a href="mailto:nikilkandesar209@gmail.com" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-white dark:text-ink bg-gray-900 dark:bg-parchment hover:bg-blue-700 dark:hover:bg-gold rounded-full text-xs tracking-wide uppercase transition-colors">
                                     <Icons.Mail/> nikilkandesar209@gmail.com
                                 </a>
-                                <a href="tel:+919970155567" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-parchment border hairline hover:border-gold rounded-full text-xs tracking-wide uppercase transition-colors">
+                                <a href="tel:+919970155567" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 font-semibold text-gray-900 dark:text-parchment border hairline hover:border-blue-600 dark:hover:border-gold rounded-full text-xs tracking-wide uppercase transition-colors">
                                     <Icons.Phone/> +91 9970155567
                                 </a>
                             </div>
-                            <div className="flex justify-center items-center gap-6 text-parchmentdim/70">
-                                <a href="https://linkedin.com/in/nikhilkandesar" target="_blank" rel="noreferrer" className="hover:text-gold transition-colors flex items-center gap-1.5 text-xs">
+                            <div className="flex justify-center items-center gap-6 text-gray-500 dark:text-parchmentdim/70">
+                                <a href="https://linkedin.com/in/nikhilkandesar" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-gold transition-colors flex items-center gap-1.5 text-xs">
                                     <Icons.Linkedin/> LinkedIn
                                 </a>
-                                <a href="https://github.com/Nikhil-Kandesar" target="_blank" rel="noreferrer" className="hover:text-gold transition-colors flex items-center gap-1.5 text-xs">
+                                <a href="https://github.com/Nikhil-Kandesar" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-gold transition-colors flex items-center gap-1.5 text-xs">
                                     <Icons.Github/> GitHub
                                 </a>
                             </div>
                         </Reveal>
                     </div>
-                    <div className="border-t hairline py-6 text-center text-[10px] text-parchmentdim/40 font-mono">
+                    <div className="border-t hairline py-6 text-center text-[10px] text-gray-400 dark:text-parchmentdim/40 font-mono">
                         © {new Date().getFullYear()} Nikhil Kandesar. Built with React + Tailwind.
                     </div>
                 </section>
