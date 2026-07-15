@@ -172,6 +172,9 @@
             X: (p) => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
             Sun: (p) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
             Moon: (p) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>,
+            Clock: (p) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+            Folder: (p) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>,
+            Graduation: (p) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
         };
 
         /* ================= REVEAL ON SCROLL ================= */
@@ -419,32 +422,46 @@
 
         /* ================= ABOUT ================= */
         function About() {
+            const aboutCards = [
+                {
+                    icon: <Icons.Key s={22}/>,
+                    title: "Wallet Infrastructure",
+                    desc: "Building cryptocurrency wallet infrastructure with structural expertise in wallet architecture and blockchain transaction lifecycles."
+                },
+                {
+                    icon: <Icons.Shield s={22}/>,
+                    title: "Security Foundations",
+                    desc: "Secure key systems including BIP-32, BIP-39, and BIP-44, applied cryptography, and secure key-management frameworks."
+                },
+                {
+                    icon: <Icons.Chain s={22}/>,
+                    title: "Cross-Chain Apps",
+                    desc: "Multi-chain applications connecting Ethereum, Polygon, BNB Chain, Base, Arbitrum, Solana, and Tron — production systems that move real value."
+                },
+            ];
+            const statCards = [
+                { icon: <Icons.Clock s={22}/>, value: "2.5+ Yrs", label: "EXPERIENCE" },
+                { icon: <Icons.Folder s={22}/>, value: "15+", label: "MAINNET PROJECTS" },
+                { icon: <Icons.Graduation s={22}/>, value: "B.Tech", label: "Vishwakarma Institute of Information Technology, Pune" },
+            ];
             return (
                 <section id="about" className="max-w-6xl mx-auto px-6 py-24">
                     <SectionHead eyebrow="01 / PROFILE" title="About Me"/>
-                    <div className="grid md:grid-cols-3 gap-10">
-                        <Reveal className="md:col-span-2 space-y-4 text-gray-600 dark:text-parchmentdim text-base leading-relaxed min-w-0">
-                            <p>I specialize in building cryptocurrency wallet infrastructure, with structural expertise
-                               in wallet architecture and blockchain transaction lifecycles.</p>
-                            <p>My foundation includes secure key systems like BIP-32, BIP-39, and BIP-44, applied
-                               cryptography, and secure key-management frameworks.</p>
-                            <p>I've built multi-chain and cross-chain applications connecting Ethereum, Polygon,
-                               BNB Chain, Base, Arbitrum, Solana, and Tron — production systems that move real value.</p>
-                        </Reveal>
-                        <Reveal delay={120} className="card rounded-2xl p-6 flex flex-col gap-5 min-w-0">
-                            <div className="ledger-row pb-4">
-                                <span className="big-serif text-3xl text-blue-600 dark:text-gold block">2.5 Yrs</span>
-                                <span className="text-[10px] eyebrow text-gray-500 dark:text-parchmentdim/60">PROFESSIONAL TRACK</span>
-                            </div>
-                            <div className="ledger-row pb-4">
-                                <span className="big-serif text-3xl text-blue-600 dark:text-gold block">15+</span>
-                                <span className="text-[10px] eyebrow text-gray-500 dark:text-parchmentdim/60">MAINNET PROJECTS</span>
-                            </div>
-                            <div>
-                                <span className="text-gray-900 dark:text-parchment font-medium block text-sm">B.Tech, Electronics &amp; Telecommunications</span>
-                                <span className="text-gray-500 dark:text-parchmentdim/60 text-xs font-mono">VIIT Pune</span>
-                            </div>
-                        </Reveal>
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        {aboutCards.map((card, i) => (
+                            <Reveal key={i} delay={i * 60} className="card rounded-xl p-5 flex flex-col gap-3">
+                                <span className="text-blue-600 dark:text-gold">{card.icon}</span>
+                                <h3 className="text-gray-900 dark:text-parchment font-semibold text-sm">{card.title}</h3>
+                                <p className="text-gray-600 dark:text-parchmentdim text-xs leading-relaxed">{card.desc}</p>
+                            </Reveal>
+                        ))}
+                        {statCards.map((stat, i) => (
+                            <Reveal key={i} delay={(i + 3) * 60} className="card rounded-xl p-5 flex flex-col gap-2">
+                                <span className="text-blue-600 dark:text-gold">{stat.icon}</span>
+                                <div className="big-serif text-xl text-gray-900 dark:text-parchment leading-none">{stat.value}</div>
+                                <div className="text-[10px] eyebrow text-gray-500 dark:text-parchmentdim/60">{stat.label}</div>
+                            </Reveal>
+                        ))}
                     </div>
                 </section>
             );
