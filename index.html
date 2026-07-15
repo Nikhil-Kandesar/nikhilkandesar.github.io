@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nikhil Kandesar - Blockchain Developer & Smart Contract Engineer with 3+ years building production Web3 DApps, DeFi protocols, and smart contracts across 15+ blockchains.">
-    <title>Nikhil Kandesar</title>
+    <meta name="description" content="Nikhil Kandesar - Blockchain Developer & Smart Contract Engineer with 2.5+ years building production Web3 DApps, DeFi protocols, and smart contracts across 15+ blockchains.">
+    <title>Nikhil Kandesar - Portfolio</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -131,6 +131,10 @@
             hidden: {},
             visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
         };
+        const scaleUp = {
+            hidden: { opacity: 0, scale: 0.95 },
+            visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
+        };
 
         // ===== REVEAL ON SCROLL COMPONENT =====
         function Reveal({ children, className = "", delay = 0 }) {
@@ -203,7 +207,7 @@
 
                         <div className="flex items-center gap-3">
                             <a
-                                href="mailto:nikhilkandesar209@gmail.com?subject=Let's Connect"
+                                href="mailto:nikilkandesar209@gmail.com?subject=Let's Connect"
                                 className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-900 bg-zinc-100 rounded-lg hover:bg-white hover:scale-[1.02] transition-all duration-300"
                             >
                                 Get In Touch
@@ -237,7 +241,7 @@
                                         </a>
                                     ))}
                                     <a
-                                        href="mailto:nikhilkandesar209@gmail.com?subject=Let's Connect"
+                                        href="mailto:nikilkandesar209@gmail.com?subject=Let's Connect"
                                         className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-zinc-900 bg-zinc-100 rounded-lg"
                                     >
                                         Get In Touch
@@ -254,7 +258,6 @@
         function Hero() {
             return (
                 <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-                    {/* Background Orbs */}
                     <div className="absolute inset-0 pointer-events-none">
                         <div className="glow-orb w-[500px] h-[500px] bg-indigo-600/10 top-[-10%] left-[-10%] animate-float" />
                         <div className="glow-orb w-[400px] h-[400px] bg-violet-600/10 top-[30%] right-[-5%] animate-float-delay" />
@@ -299,9 +302,9 @@
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.5 }}
-                            className="text-zinc-400 max-w-xl mx-auto mb-8 text-base sm:text-lg"
+                            className="text-zinc-400 max-w-2xl mx-auto mb-8 text-base sm:text-lg"
                         >
-                            Over 3 years of engineering experience developing secure, high-throughput decentralized protocols and Web3 decentralized applications (DApps) across 15+ blockchain ecosystems.
+                            Blockchain Developer with 2.5 years of experience designing, developing, and deploying production-ready smart contracts and decentralized applications[cite: 5, 10]. Expert in cryptocurrency wallet infrastructure, blockchain transaction lifecycles, and secure key management across 15+ mainnet deployments[cite: 6, 9].
                         </motion.p>
 
                         <motion.div
@@ -310,11 +313,11 @@
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="flex items-center justify-center gap-4"
                         >
-                            <a href="#projects" className="px-6 py-3 rounded-xl font-medium bg-gradient-to-r from-indigo-500 to-violet-600 text-white hover:opacity-90 shadow-lg shadow-indigo-500/20 hover:scale-[1.02] transition-all">
+                            <a href="#projects" className="px-5 py-2.5 rounded-xl font-medium bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-lg shadow-indigo-500/20 transition-all hover:opacity-90 hover:scale-[1.02]">
                                 View Projects
                             </a>
-                            <a href="#contact" className="px-6 py-3 rounded-xl font-medium glass border border-zinc-800 hover:bg-zinc-900/50 hover:scale-[1.02] transition-all text-zinc-200">
-                                Let's Talk
+                            <a href="#contact" className="px-5 py-2.5 rounded-xl font-medium glass border border-zinc-800 transition-all text-zinc-300 hover:bg-zinc-900/40 hover:scale-[1.02]">
+                                Contact Me
                             </a>
                         </motion.div>
                     </div>
@@ -322,13 +325,13 @@
             );
         }
 
-        // ===== PLACEHOLDER SECTIONS FOR STRUCTURE =====
-        function SectionWrapper({ id, title, children }) {
+        // ===== SECTION CONTAINER COMPONENT =====
+        function Section({ id, title, children }) {
             return (
-                <section id={id} className="py-24 max-w-6xl mx-auto px-6 border-t border-zinc-900">
+                <section id={id} className="py-24 max-w-5xl mx-auto px-6 border-t border-zinc-900">
                     <Reveal>
-                        <h2 className="text-3xl font-bold text-zinc-100 tracking-tight mb-12 font-mono flex items-center gap-3">
-                            <span className="text-indigo-500 text-lg">//</span> {title}
+                        <h2 className="text-2xl font-bold tracking-tight text-zinc-200 mb-12 font-mono">
+                            <span className="text-indigo-500">//</span> {title}
                         </h2>
                     </Reveal>
                     {children}
@@ -336,109 +339,235 @@
             );
         }
 
+        // ===== PORTFOLIO SECTIONS =====
         function About() {
             return (
-                <SectionWrapper id="about" title="About Me">
-                    <div className="grid md:grid-cols-3 gap-8 text-zinc-400">
-                        <div className="md:col-span-2 space-y-4">
-                            <p>I build systems that operate without centralized trust. My background centers entirely around Smart Contract security, high-performance DeFi mechanics, and cross-chain architecture interoperability layers.</p>
-                            <p>Whether optimizing raw gas overhead or developing complex programmatic staking and governance logic, my aim is flawless protocol reliability under real economic stress parameters.</p>
+                <Section id="about" title="About Summary">
+                    <div className="grid md:grid-cols-3 gap-8 text-zinc-400 text-sm leading-relaxed">
+                        <div className="md:col-span-2 space-y-4 text-base">
+                            <p>I specialize in building cryptocurrency wallet infrastructure with structural expertise in secure wallet architectures and end-to-end blockchain transaction lifecycles[cite: 6].</p>
+                            <p>My foundational knowledge includes deep implementation workflows for secure key systems like BIP-32, BIP-39, and BIP-44, secure cryptographic key setups, and Multi-Party Computation execution maps[cite: 7, 45].</p>
+                            <p>I have built robust cross-chain architectures connecting layers over Ethereum, Polygon, Solana, BNB Chain, Base, Arbitrum, and Tron network environments[cite: 8].</p>
                         </div>
-                        <div className="glass-card p-6 rounded-2xl flex flex-col justify-center">
-                            <div className="text-indigo-400 font-bold text-4xl mb-1">3+</div>
-                            <div className="text-zinc-300 font-medium text-sm mb-4">Years Web3 Experience</div>
-                            <div className="text-indigo-400 font-bold text-4xl mb-1">15+</div>
-                            <div className="text-zinc-300 font-medium text-sm">Blockchains Integrated</div>
+                        <div className="glass-card p-6 rounded-2xl flex flex-col justify-center gap-4">
+                            <div>
+                                <span className="text-indigo-400 font-bold text-3xl block">2.5 Yrs</span>
+                                <span className="text-zinc-400 text-xs uppercase tracking-wider font-mono">Professional Track [cite: 10]</span>
+                            </div>
+                            <div>
+                                <span className="text-indigo-400 font-bold text-3xl block">15+</span>
+                                <span className="text-zinc-400 text-xs uppercase tracking-wider font-mono">Mainnet Projects [cite: 9]</span>
+                            </div>
+                            <div className="pt-2 border-t border-zinc-800/80">
+                                <span className="text-zinc-300 font-medium block text-xs">B.Tech (Electronics & Telecom) [cite: 30]</span>
+                                <span className="text-zinc-500 text-[11px] font-mono">VIIT Pune | CGPA: 9.29 [cite: 31, 32]</span>
+                            </div>
                         </div>
                     </div>
-                </SectionWrapper>
+                </Section>
             );
         }
 
         function Skills() {
-            const skillCategories = [
-                { title: "Languages", skills: ["Solidity", "Rust", "TypeScript", "Go", "Python"] },
-                { title: "Frameworks & Tools", skills: ["Foundry", "Hardhat", "Ethers.js", "Viem", "Anchor (Solana)"] },
-                { title: "Infrastructure", skills: ["Graph Protocol", "Chainlink", "IPFS", "Docker", "AWS"] }
+            const taxonomy = [
+                { title: "Blockchain Core", stack: ["Solidity", "Rust", "Move", "Security Auditing", "Gas Optimization", "Hardhat", "Foundry"] },
+                { title: "Networks & Infrastructure", stack: ["Ethereum", "Solana", "Polygon", "Arbitrum", "BNB Chain", "Base", "Tron", "Bitcoin", "AWS", "Docker", "CI/CD"] },
+                { title: "Tokens & Protocols", stack: ["ERC-20", "ERC-721", "ERC-1155", "ERC-3643", "ERC-8004", "SPL Tokens", "Tokenization", "Staking", "RWA"] },
+                { title: "Wallet & Key Management", stack: ["BIP-32/39/44", "HD Wallet", "MPC Wallet", "Multi-sig", "Transaction Signing", "KMS", "HSM", "Fireblocks", "BitGo", "Safe"] },
+                { title: "Full-Stack Software", stack: ["TypeScript", "JavaScript", "React.js", "Next.js", "Node.js", "NestJS", "PostgreSQL", "MongoDB", "Redis", "REST APIs", "WebSockets"] }
             ];
             return (
-                <SectionWrapper id="skills" title="Core Capabilities">
-                    <div className="grid sm:grid-cols-3 gap-6">
-                        {skillCategories.map((cat, i) => (
-                            <div key={i} className="glass-card p-6 rounded-2xl">
-                                <h3 className="text-zinc-200 font-semibold mb-4 text-base">{cat.title}</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {cat.skills.map((skill, si) => (
-                                        <span key={si} className="px-3 py-1 rounded-lg text-xs font-mono bg-zinc-900 border border-zinc-800/80 text-zinc-400">
-                                            {skill}
+                <Section id="skills" title="Technical Skills">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+                        {taxonomy.map((item, index) => (
+                            <div key={index} className="glass-card p-5 rounded-xl flex flex-col justify-between">
+                                <h3 className="text-zinc-300 font-semibold mb-4 text-xs tracking-wider uppercase font-mono text-indigo-400">{item.title}</h3>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {item.stack.map((s, idx) => (
+                                        <span key={idx} className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-zinc-900 border border-zinc-800 text-zinc-300">
+                                            {s}
                                         </span>
                                     ))}
                                 </div>
                             </div>
                         ))}
                     </div>
-                </SectionWrapper>
+                </Section>
             );
         }
 
         function Experience() {
+            const jobs = [
+                {
+                    role: "Blockchain Developer [cite: 12]",
+                    company: "Storygame Tech Ltd (storygame.io) [cite: 12]",
+                    location: "DIFC, Dubai (Remote) [cite: 26]",
+                    period: "Sept 2025 — Present [cite: 13]",
+                    bullets: [
+                        "Developing smart contracts for gaming and NFT-based platforms on Ethereum and Solana[cite: 14].",
+                        "Implementing token standards (ERC-721, ERC-1155) for in-game assets and digital collectibles[cite: 14].",
+                        "Building decentralized gaming infrastructure setups integrating custom play-to-earn mechanics[cite: 14]."
+                    ]
+                },
+                {
+                    role: "Blockchain Developer [cite: 17]",
+                    company: "PayWaz LLP (paywaz.com) [cite: 15, 16]",
+                    location: "Florida, USA (Remote) [cite: 27]",
+                    period: "Jan 2025 — July 2025 [cite: 18]",
+                    bullets: [
+                        "Developed zero-fee crypto payment infrastructure enabling global, borderless asset transactions[cite: 19].",
+                        "Built Solana-native payment routing programs targeted at achieving sub-second block finality metrics[cite: 19].",
+                        "Implemented secure crypto wallet engines containing transaction monitoring and confirmation handling systems[cite: 20].",
+                        "Deployed automated gasless transaction relayers to facilitate a seamless onboarding user experience[cite: 21]."
+                    ]
+                },
+                {
+                    role: "Blockchain Developer [cite: 23]",
+                    company: "TechniSURE Solutions Pvt Ltd (technisure.com) [cite: 22]",
+                    location: "Pune, India [cite: 28]",
+                    period: "June 2023 — Dec 2024 [cite: 24]",
+                    bullets: [
+                        "Designed and deployed enterprise smart contracts focused on DeFi applications, RWA tokenization, and NFT spaces[cite: 25].",
+                        "Developed customized on-chain program components utilizing Solidity and Rust (Solana Anchor framework)[cite: 25].",
+                        "Implemented token contract patterns including ERC-20, ERC-721, ERC-1155, ERC-3643, and SPL token setups[cite: 25].",
+                        "Built custom wallet features including HD, MPC, and multi-sig wallets with secure BIP-32/39/44 specifications[cite: 25].",
+                        "Integrated external transaction tooling (MetaMask, WalletConnect, Hardware Wallets) with smart testing coverage via Hardhat and Foundry[cite: 25].",
+                        "Orchestrated deployments utilizing AWS cloud setups, Docker containers, and robust automated CI/CD pipelines[cite: 25]."
+                    ]
+                }
+            ];
+
             return (
-                <SectionWrapper id="experience" title="Professional History">
-                    <div className="space-y-8 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[1px] before:bg-zinc-800">
-                        <div className="relative pl-8">
-                            <div className="absolute left-[7px] top-[7px] w-3 h-3 rounded-full bg-indigo-500 ring-4 ring-indigo-950" />
-                            <span className="text-xs font-mono text-indigo-400">2023 - PRESENT</span>
-                            <h3 className="text-zinc-100 font-semibold mt-1 text-lg">Senior Smart Contract Engineer</h3>
-                            <p className="text-zinc-500 text-sm">DeFi Protocol Infrastructure</p>
-                            <p className="text-zinc-400 mt-2 text-sm max-w-2xl">Designed core multi-signature storage vaults and automated liquidity routers yielding optimal routing distributions across multiple active layers.</p>
-                        </div>
+                <Section id="experience" title="Professional Experience">
+                    <div className="relative pl-6 border-l border-zinc-800 space-y-12">
+                        {jobs.map((job, idx) => (
+                            <div key={idx} className="relative">
+                                <div className="absolute -left-[31px] top-1.5 w-2 h-2 rounded-full bg-indigo-500 ring-4 ring-indigo-950" />
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <span className="text-xs font-mono text-indigo-400">{job.period}</span>
+                                    <span className="text-xs text-zinc-500 font-mono">{job.location}</span>
+                                </div>
+                                <h3 className="text-zinc-100 font-semibold text-lg mt-1">{job.role}</h3>
+                                <p className="text-zinc-400 text-sm font-medium">{job.company}</p>
+                                <ul className="mt-3 space-y-2 text-zinc-400 text-sm list-disc list-inside leading-relaxed">
+                                    {job.bullets.map((b, i) => (
+                                        <li key={i} className="text-zinc-400">{b}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
-                </SectionWrapper>
+                </Section>
             );
         }
 
+        // ===== PROJECTS SECTION =====
         function Projects() {
+            const list = [
+                {
+                    name: "DePINed [cite: 48]",
+                    type: "DEFI / INFRASTRUCTURE [cite: 46]",
+                    desc: "Decentralized Compute & Bandwidth Network for AI & Rendering Infrastructure optimized with custom token-incentive distribution mechanisms[cite: 49].",
+                    tech: ["Solidity", "Hardhat", "Ethers.js", "Ethereum"][cite: 49],
+                    chains: ["Base Chain", "BNB Chain"]
+                },
+                {
+                    name: "ExDex [cite: 50]",
+                    type: "DEFI / TRADING [cite: 51]",
+                    desc: "AI-Driven Semi-Decentralized Multi-Asset Trading Platform pairing secure on-chain validation layers with high-speed off-chain AI order routing systems[cite: 52].",
+                    tech: ["Solidity", "Hardhat", "React.js", "Multi-asset vaults"][cite: 52],
+                    chains: ["BNB Chain", "XDC Network"]
+                },
+                {
+                    name: "Botify.cloud [cite: 53]",
+                    type: "WEB3 / AUTOMATION [cite: 54]",
+                    desc: "No-Code AI Agent Marketplace enabling automated deployment of custom on-chain crypto trading bots. Built upgradeable proxy patterns for strategic updates[cite: 55].",
+                    tech: ["Solidity", "ERC-20", "Proxy patterns", "Node.js"][cite: 56],
+                    chains: ["Solana", "Sui Chain"]
+                },
+                {
+                    name: "Raze [cite: 57]",
+                    type: "RWA / DEFI [cite: 58]",
+                    desc: "Tokenized Real-World Asset (RWA) Platform enabling fractional ownership, automated regulatory compliance, KYC/AML ledger checks, and institutional-grade secure custody architectures[cite: 59].",
+                    tech: ["Solidity", "ERC-3643", "ERC-1155", "TypeScript", "NestJS", "PostgreSQL"][cite: 60],
+                    chains: ["Redbelly Network", "Avalanche Chain"]
+                },
+                {
+                    name: "Paywaz [cite: 61]",
+                    type: "PAYMENTS / WEB3 [cite: 62]",
+                    desc: "Zero-Fee, Borderless Crypto Payments Platform structured for international transfer tasks featuring native gasless transaction support mechanisms[cite: 63].",
+                    tech: ["Rust", "Solana", "Anchor", "Payment routing"][cite: 63],
+                    chains: ["Solana", "Polygon Chain"]
+                }
+            ];
+
             return (
-                <SectionWrapper id="projects" title="Selected Artifacts">
-                    <div className="grid sm:grid-cols-2 gap-6">
-                        <div className="glass-card p-6 rounded-2xl group hover:border-zinc-700 transition-colors">
-                            <div className="flex justify-between items-start mb-4">
-                                <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400"><Icons.Shield /></div>
-                                <Icons.ExternalLink />
+                <Section id="projects" title="Key Projects">
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {list.map((proj, idx) => (
+                            <div key={idx} className="glass-card p-6 rounded-xl group hover:border-zinc-700 transition-all flex flex-col justify-between">
+                                <div>
+                                    <div className="flex justify-between items-start mb-3">
+                                        <span className="text-[10px] font-mono uppercase bg-indigo-950/50 text-indigo-400 px-2 py-0.5 rounded border border-indigo-900/40">{proj.type}</span>
+                                        <div className="text-zinc-500 group-hover:text-zinc-300 transition-colors"><Icons.ExternalLink /></div>
+                                    </div>
+                                    <h4 className="text-zinc-100 font-bold text-base mb-1 group-hover:text-indigo-400 transition-colors">{proj.name}</h4>
+                                    
+                                    <div className="flex flex-wrap gap-1 mb-3">
+                                        {proj.chains.map((chain, cIdx) => (
+                                            <span key={cIdx} className="text-[10px] font-semibold font-mono bg-emerald-950/40 text-emerald-400 px-2 py-0.5 rounded border border-emerald-900/30">
+                                                ⛓️ {chain}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <p className="text-zinc-400 text-xs leading-relaxed mb-6">{proj.desc}</p>
+                                </div>
+                                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-900">
+                                    {proj.tech.map((t, i) => (
+                                        <span key={i} className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-900 text-zinc-400 border border-zinc-800/60">{t}</span>
+                                    ))}
+                                </div>
                             </div>
-                            <h3 className="text-zinc-100 font-semibold group-hover:text-indigo-400 transition-colors mb-2">Automated AMM Pool Aggregator</h3>
-                            <p className="text-zinc-400 text-sm mb-4">A complete asset router built with Foundry. Optimizes multi-hop conversions over low-tier swap liquidity systems without frontrunning exposure vectors.</p>
-                        </div>
-                        <div className="glass-card p-6 rounded-2xl group hover:border-zinc-700 transition-colors">
-                            <div className="flex justify-between items-start mb-4">
-                                <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400"><Icons.Cube /></div>
-                                <Icons.ExternalLink />
-                            </div>
-                            <h3 className="text-zinc-100 font-semibold group-hover:text-violet-400 transition-colors mb-2">Cross-Chain Asset Bridge</h3>
-                            <p className="text-zinc-400 text-sm mb-4">State lock-and-mint logic powered by localized light clients validating payload parameters accurately.</p>
-                        </div>
+                        ))}
                     </div>
-                </SectionWrapper>
+                </Section>
             );
         }
 
+        // ===== CONTACT SECTION =====
         function Contact() {
             return (
-                <SectionWrapper id="contact" title="Initialize Connection">
-                    <div className="glass-card p-8 rounded-3xl text-center max-w-2xl mx-auto">
-                        <p className="text-zinc-300 mb-6">Looking for architectural input on security dynamics or cross-chain integration projects?</p>
-                        <a href="mailto:nikhilkandesar209@gmail.com" className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-zinc-900 bg-zinc-100 hover:bg-white rounded-xl transition-all">
-                            <Icons.Mail /> Email Me Directly
-                        </a>
+                <Section id="contact" title="Get In Touch">
+                    <div className="glass-card p-8 rounded-2xl text-center max-w-xl mx-auto space-y-5">
+                        <p className="text-zinc-300 text-sm max-w-md mx-auto">
+                            Let's connect regarding custom architectural design implementations, smart contract auditing tasks, or full-stack DApp development goals.
+                        </p>
+                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-2">
+                            <a href="mailto:nikilkandesar209@gmail.com" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-5 py-2.5 font-semibold text-zinc-950 bg-zinc-50 hover:bg-white rounded-lg text-xs transition-all shadow-md">
+                                <Icons.Mail /> nikilkandesar209@gmail.com
+                            </a>
+                            <a href="tel:+919970155567" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-5 py-2.5 font-semibold text-zinc-300 glass border border-zinc-800 hover:bg-zinc-900/50 rounded-xl text-xs transition-all">
+                                <Icons.Phone /> +91 9970155567 [cite: 3]
+                            </a>
+                        </div>
+                        <div className="flex justify-center items-center gap-6 pt-4 text-zinc-500 border-t border-zinc-900">
+                            <a href="https://linkedin.com/in/nikhilkandesar" target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-xs">
+                                <Icons.Linkedin /> LinkedIn [cite: 3]
+                            </a>
+                            <a href="https://github.com/Nikhil-Kandesar" target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-xs">
+                                <Icons.Github /> GitHub [cite: 3]
+                            </a>
+                        </div>
                     </div>
-                </SectionWrapper>
+                </Section>
             );
         }
 
-        // ===== MAIN APP COMPONENT =====
+        // ===== MAIN WRAPPER =====
         function App() {
             return (
-                <div className="relative min-h-screen bg-zinc-950 text-zinc-50 selection:bg-indigo-500/30 selection:text-indigo-200">
+                <div className="relative min-h-screen bg-zinc-950 text-zinc-50 selection:bg-indigo-500/20 selection:text-indigo-300">
                     <Navbar />
                     <main>
                         <Hero />
@@ -448,14 +577,14 @@
                         <Projects />
                         <Contact />
                     </main>
-                    <footer className="py-8 text-center text-xs text-zinc-600 border-t border-zinc-900/50 font-mono">
-                        © {new Date().getFullYear()} Nikhil Kandesar. Built securely with React + Tailwind + Motion.
+                    <footer className="py-8 text-center text-[10px] text-zinc-600 border-t border-zinc-900/40 font-mono">
+                        © {new Date().getFullYear()} Nikhil Kandesar. Powered by React + Tailwind + Motion.
                     </footer>
                 </div>
             );
         }
 
-        // ===== MOUNT TO DOM =====
+        // ===== MOUNT POINT =====
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
